@@ -23,6 +23,7 @@ namespace MY_Cloud_notes_installation_package
         public MainWindow()
         {
             InitializeComponent();
+            //test
         }
     }
 }
