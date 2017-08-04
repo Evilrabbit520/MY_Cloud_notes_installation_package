@@ -5,8 +5,53 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MY_Cloud_notes_installation_package"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+        Title="MainWindow" Height="300" Width="450" Background="White" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" IsTabStop="False" Icon="MY云笔记.ico" MouseMove="MYDLOGIN_MouseDown">
+    <Grid Loaded="Grid_Loaded">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="49*"/>
+        </Grid.RowDefinitions>
+        <Image x:Name="登陆界面_jpg" Margin="0,0,0,147" Source="登陆界面.jpg" Stretch="Fill" Grid.RowSpan="2"/>
+        <Button x:Name="buttonShutdown" Content="×" HorizontalAlignment="Left" Margin="425,0,0,0" VerticalAlignment="Top" Width="25" Height="25" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" IsTabStop="False" IsCancel="True" ToolTip="关闭" Click="buttonShutdown_Click"/>
+        <Button x:Name="buttonInstall" Content="安        装" Margin="94,100,90,15" Background="White" BorderBrush="White" Foreground="White" OpacityMask="White" FontSize="18" ToolTip="安装MY" IsDefault="True" Grid.Row="1" IsTabStop="False" Click="buttonInstall_Click">
+            <Button.Template >
+                <ControlTemplate TargetType="{x:Type Button}" >
+                    <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="5,5,5,5">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                <GradientStop Color="White" Offset="0.0" />
+                                <GradientStop Color="#FF00AEFF" Offset="1" />
+                                <GradientStop Color="#FF008BFF" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" ></ContentPresenter>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button x:Name="buttonMinimize" Content="-" HorizontalAlignment="Left" Margin="400,1,0,0" VerticalAlignment="Top" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" ToolTip="最小化" Click="buttonMinimize_Click"/>
+
+        <Button x:Name="buttonChoiceInstallPath" Content="..." HorizontalAlignment="Left" Margin="421,16,0,0" VerticalAlignment="Top" Width="19" Height="19" Background="{x:Null}" BorderBrush="#FF0092E7" Foreground="#FF4B1C1C" ToolTip="选择文件夹" Click="buttonChoiceInstallPath_Click" Grid.Row="1"/>
+
+        <Label x:Name="labelInstallPath" Content="安装路径" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16" Height="29" Width="74" Grid.Row="1" Background="White" Foreground="Black"/>
+        <TextBox x:Name="textboxInstallPath" Margin="90,18,34,0" TextWrapping="Wrap" Text="C:\Program Files\My_Cloud_notes" VerticalAlignment="Top" Foreground="#FF1B0707" Grid.Row="1">
+        </TextBox>
+        <ProgressBar HorizontalAlignment="Left" Height="10" Margin="10,85,0,0" Grid.Row="1" VerticalAlignment="Top" Width="430"/>
+        <Button x:Name="buttonExit" Content="安 装 完 成" Margin="94,100,90,15" Background="White" BorderBrush="White" Foreground="White" OpacityMask="White" FontSize="18" ToolTip="安装MY" IsDefault="True" Grid.Row="1" IsTabStop="False" Click="buttonExit_Click" Visibility="Collapsed">
+            <Button.Template >
+                <ControlTemplate TargetType="{x:Type Button}" >
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0" CornerRadius="5,5,5,5">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                <GradientStop Color="White" Offset="0.0" />
+                                <GradientStop Color="#FF00AEFF" Offset="1" />
+                                <GradientStop Color="#FF008BFF" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
     </Grid>
 </Window>
