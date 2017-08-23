@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MY_Cloud_notes_installation_package", "MY_Cloud_notes_installation_package\MY_Cloud_notes_installation_package.csproj", "{932F287A-40F6-4DF7-A501-0A409E39BB81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZipApp", "ZipApp\ZipApp.csproj", "{AF951600-E7F0-4E90-B744-74E7BD907939}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +17,15 @@ Global
 		{932F287A-40F6-4DF7-A501-0A409E39BB81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{932F287A-40F6-4DF7-A501-0A409E39BB81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{932F287A-40F6-4DF7-A501-0A409E39BB81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF951600-E7F0-4E90-B744-74E7BD907939}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF951600-E7F0-4E90-B744-74E7BD907939}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF951600-E7F0-4E90-B744-74E7BD907939}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF951600-E7F0-4E90-B744-74E7BD907939}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AC6B6278-E861-45B7-84A5-7780A6D8C8D1}
 	EndGlobalSection
 EndGlobal

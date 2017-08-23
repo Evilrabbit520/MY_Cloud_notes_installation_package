@@ -36,7 +36,11 @@
         <Label x:Name="labelInstallPath" Content="安装路径" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16" Height="29" Width="74" Grid.Row="1" Background="White" Foreground="Black"/>
         <TextBox x:Name="textboxInstallPath" Margin="90,18,34,0" TextWrapping="Wrap" Text="C:\Program Files\My_Cloud_notes" VerticalAlignment="Top" Foreground="#FF1B0707" Grid.Row="1">
         </TextBox>
-        <ProgressBar HorizontalAlignment="Left" Height="10" Margin="10,85,0,0" Grid.Row="1" VerticalAlignment="Top" Width="430"/>
+        <ProgressBar x:Name="progressbarInstall" HorizontalAlignment="Left" Height="10" Margin="10,85,0,0" Grid.Row="1" VerticalAlignment="Top" Width="430">
+            <ProgressBar.Effect>
+                <BlurEffect KernelType="Box" Radius="3"/>
+            </ProgressBar.Effect>
+        </ProgressBar>
         <Button x:Name="buttonExit" Content="安 装 完 成" Margin="94,100,90,15" Background="White" BorderBrush="White" Foreground="White" OpacityMask="White" FontSize="18" ToolTip="安装MY" IsDefault="True" Grid.Row="1" IsTabStop="False" Click="buttonExit_Click" Visibility="Collapsed">
             <Button.Template >
                 <ControlTemplate TargetType="{x:Type Button}" >

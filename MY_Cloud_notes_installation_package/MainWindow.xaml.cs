@@ -1,4 +1,4 @@
-﻿using SevenZip;
+﻿using ICSharpCode.SharpZipLib.Zip;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -29,8 +29,6 @@ namespace MY_Cloud_notes_installation_package
             //test
         }
 
-        CodeProgress m_CodeProgress = null;
-
         bool installEnd = false;
 
 
@@ -57,8 +55,68 @@ namespace MY_Cloud_notes_installation_package
         private void buttonInstall_Click(object sender, RoutedEventArgs e)
         {
             this.textboxInstallPath.IsEnabled = false;
+            this.progressbarInstall.Value = this.progressbarInstall.Minimum;
 
-            byte[] ba = InstallResource._2017_05_09_osteosarcoma_preliminary_results_of_in_vi;
+            string strDirectory = this.textboxInstallPath.Text+"\\";
+            string password = "";
+            bool overWrite = true;
+
+            Task task = new Task(() =>
+            {
+                using (ZipInputStream s = new ZipInputStream(new MemoryStream(InstallResource.ResourceManager.GetObject("install") as byte[])))
+                {
+                    s.Password = password;
+                    ZipEntry theEntry;
+
+                    while ((theEntry = s.GetNextEntry()) != null)
+                    {
+                        string directoryName = "";
+                        string pathToZip = "";
+                        pathToZip = theEntry.Name;
+
+                        if (pathToZip != "")
+                        {
+                            directoryName = System.IO.Path.GetDirectoryName(pathToZip) + "\\";
+                        }
+
+                        string fileName = System.IO.Path.GetFileName(pathToZip);
+
+                        Directory.CreateDirectory(strDirectory + directoryName);
+
+                        if (fileName != "")
+                        {
+                            if ((File.Exists(strDirectory + directoryName + fileName) && overWrite) || (!File.Exists(strDirectory + directoryName + fileName)))
+                            {
+                                using (FileStream streamWriter = File.Create(strDirectory + directoryName + fileName))
+                                {
+                                    int size = 2048;
+                                    byte[] data = new byte[2048];
+                                    while (true)
+                                    {
+                                        size = s.Read(data, 0, data.Length);
+
+                                        if (size > 0)
+                                            streamWriter.Write(data, 0, size);
+                                        else
+                                            break;
+                                    }
+                                    streamWriter.Close();
+                                }
+                            }
+                        }
+
+                        this.progressbarInstall.Dispatcher.Invoke(() => { this.progressbarInstall.Value += (new Random()).Next(Convert.ToInt32(this.progressbarInstall.Maximum - this.progressbarInstall.Value)); });
+                    }
+
+                    s.Close();
+                    this.progressbarInstall.Dispatcher.Invoke(() => { this.progressbarInstall.Value =this.progressbarInstall.Maximum; });
+                    MessageBox.Show("Over", "Over");
+                    this.buttonExit.Dispatcher.Invoke(() => { this.buttonExit.IsEnabled = true; });
+                }
+            });
+
+            task.Start();
+            /*
             Directory.CreateDirectory(this.textboxInstallPath.Text);
             FileStream fs = new FileStream(this.textboxInstallPath.Text+@"\m.pdf", FileMode.Create);
             try
@@ -82,9 +140,13 @@ namespace MY_Cloud_notes_installation_package
             {
                 throw;
             }
-
+            */
             (sender as Button).Visibility = Visibility.Collapsed;
             this.buttonExit.Visibility = Visibility.Visible;
+            this.buttonExit.IsEnabled = false;
+            
+
+            
         }
 
         private void buttonChoiceInstallPath_Click(object sender, RoutedEventArgs e)
